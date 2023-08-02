@@ -418,7 +418,7 @@ const Card = ({ isCardOpen, onClose, google }) => {
                             <RiCloseLine />
                         </button>
 
-                        <div className="p-[20px]  bg-white rounded-[10px] mt-0">
+                        <div className="p-[20px]  bg-white rounded-[10px] mt-0 overflow-y-auto max-h-[730px]">
                             <h2 className="mb-[5px] uppercase ml-[4px]">Productos en el carrito</h2>
                             {cartItems.length === 0 ? (
 
@@ -1006,6 +1006,8 @@ const Card = ({ isCardOpen, onClose, google }) => {
 
 
 
+
+
                             <button
                                 type="submit"
                                 className="bg-orange-400  w-full h-[50px] justify-center items-center rounded-[10px] transition duration-150 ease-in-out"
@@ -1020,8 +1022,6 @@ const Card = ({ isCardOpen, onClose, google }) => {
                                     </span>
                                 </div>
                             </button>
-
-
                         </div>
                     </div>
                 </div >

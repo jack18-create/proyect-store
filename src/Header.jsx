@@ -1,4 +1,4 @@
-import { BsFacebook } from "react-icons/bs";
+import { BsFacebook, BsCart4 } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { IoSearchOutline, IoPersonOutline, IoBagHandleOutline, IoCloseSharp, IoCaretBack } from "react-icons/io5";
@@ -588,7 +588,7 @@ function Header({ totalProducts }) {
                 </button>
 
                 <button className="block bg-transparent font-inherit border-none cursor-pointer relative text-[26px] text-zinc-900 p-[10px]" onClick={handleCardOpen}>
-                    <IoBagHandleOutline />
+                    <BsCart4 />
                     <span className="inline-block bg-red-500 absolute text-white top-0 right-0 text-[12px] font-[500] leading-[1] py-[2px] px-[4px] rounded-[20px]">
                         {cartItems.length} {/* Mostrar la cantidad de productos en el carrito */}
                     </span>
