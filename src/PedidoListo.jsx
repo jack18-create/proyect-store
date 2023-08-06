@@ -5,6 +5,7 @@ import { RiCloseLine } from "react-icons/ri";
 function PedidoListo() {
     const [visible, setVisible] = useState(true);
     const [isPedidoOpen, setIsPedidoOpen] = useState(false);
+    
     const handlePedidoOpen = () => {
         setIsPedidoOpen(true);
     };
@@ -23,7 +24,7 @@ function PedidoListo() {
 
     return (
         <div>
-            <div className=" fixed  h-[10%] top-[30px] left-[98px] right-[0px] bg-white max-w-[300px] flex items-start gap-[15px] p-[15px] rounded-[5px] shadow-custom translate-x-custom transition-transform duration-05 z-[20] ">
+            <div className=" fixed  h-[10%] top-[30px] left-[98px] right-[0px] bg-white max-w-[300px] flex items-start gap-[15px] p-[15px] rounded-[5px] shadow-custom translate-x-custom transition-transform duration-05 z-[20] animate-slideInFromRight animate-circularShapeAnimation">
                 <button
                     className="absolute top-[4px] left-[7px] text-yellow-400"
                     onClick={handlePedidoClose}

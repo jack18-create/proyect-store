@@ -110,14 +110,14 @@ const Card = ({ isCardOpen, onClose, google }) => {
 
 
     const handleCardCloseClick = () => {
-        if (name !== '' && numero !== '' && selectedPaymentMethod !== '' && selectedDelivery === 'Delivery') {
+        if (name !== '' && numero !== '' && selectedPaymentMethod !== '' && (selectedDelivery === 'Delivery' || selectedDelivery === 'Retirar')) {
             setShowDiv(true); // Show the PedidoForm using setShowDiv
         } else {
             setIsFormSubmitted(true);
             setMostrarMensaje(numero.length < 9);
-
         }
     };
+
 
 
 
@@ -418,7 +418,7 @@ const Card = ({ isCardOpen, onClose, google }) => {
                             <RiCloseLine />
                         </button>
 
-                        <div className="p-[20px]  bg-white rounded-[10px] mt-0 overflow-y-auto max-h-[730px]">
+                        <div className="p-[20px] bg-white rounded-[10px] pb-[62px] overflow-y-auto max-h-[730px]">
                             <h2 className="mb-[5px] uppercase ml-[4px]">Productos en el carrito</h2>
                             {cartItems.length === 0 ? (
 
@@ -1008,20 +1008,22 @@ const Card = ({ isCardOpen, onClose, google }) => {
 
 
 
-                            <button
-                                type="submit"
-                                className="bg-orange-400  w-full h-[50px] justify-center items-center rounded-[10px] transition duration-150 ease-in-out"
-                                onClick={handleCardCloseClick}
-                                disabled={isFieldsComplete}
-                            >
-                                <div className="flex justify-around">
-                                    <HiOutlineShoppingCart className="text-white font-bold text-[20px]" />
-                                    <span className="ml-[-70px] text-white">Ir a pagar</span>
-                                    <span className="font-size-15 body-font text-uppercase text-white bold">
-                                        {totalOrderCost.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
-                                    </span>
-                                </div>
-                            </button>
+                            <div className="absolute bottom-[0px] left-0 right-0 py-[10px] px-[px] mx-[9px] my-[0px] bg-white rounded-[10px]">
+                                <button
+                                    type="submit"
+                                    className="bg-orange-400 w-full h-[50px] justify-center items-center rounded-[10px] transition duration-150 ease-in-out"
+                                    onClick={handleCardCloseClick}
+                                    disabled={isFieldsComplete}
+                                >
+                                    <div className="flex justify-around">
+                                        <HiOutlineShoppingCart className="text-white font-bold text-[20px]" />
+                                        <span className="ml-[-70px] text-white">Ir a pagar</span>
+                                        <span className="font-size-15 body-font text-uppercase text-white bold">
+                                            {totalOrderCost.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
+                                        </span>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div >
@@ -1035,7 +1037,6 @@ const Card = ({ isCardOpen, onClose, google }) => {
                     total={totalOrderCost}
                     method={selectedPaymentMethod}
                     deliveryOptions={selectedOptions}
-                    selectedOption={selectedOption}
                     userLocation={userLocation}
                     selectedHour={selectedHour}
                     businessLocation={businessLocation}

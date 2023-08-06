@@ -21,7 +21,6 @@ function App() {
     <CartProvider> {/* Envuelve los componentes con el proveedor del contexto */}
       <Header />
       {showModal && <Modal closeModal={handleHideModal} />}
-      <button onClick={handleHideModal}>Hide Modal</button>
       <PedidoListo />
       <PedidoForm />
       <NotificationToast />

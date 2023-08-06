@@ -149,14 +149,14 @@ function Header({ totalProducts }) {
     };
 
     // boton de layout en Mains
-    const [isMainsOpen, setIsMainsOpen] = useState(false);
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
-    const handleMainsButtonClick = () => {
-        setIsMainsOpen(!isMainsOpen);
+    const handleCategoryOpen = () => {
+        setIsCategoryOpen(true);
     };
 
-    const handleMainsClose = () => {
-        setIsMainsOpen(false);
+    const handleCategoryClose = () => {
+        setIsCategoryOpen(false);
     };
 
     // boton para abrir el componente  card
@@ -173,6 +173,10 @@ function Header({ totalProducts }) {
         setIsCardOpen(false);
     };
 
+    const handleHomeButtonClick = () => {
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+    };
 
 
 
@@ -204,8 +208,8 @@ function Header({ totalProducts }) {
 
                     <div className="min-[480px]:text-gray-900 min-[480px]:text-[0.75rem] min-[480px]:uppercase">
                         <p>
-                            <b className="font-[500]">Free Shipping</b>
-                            This Week Order Over - $55
+                            <b className="font-[500]">Envío gratis </b>
+                            Pedido Superior a - $20.000
                         </p>
                     </div>
 
@@ -233,7 +237,7 @@ function Header({ totalProducts }) {
                         <img className="mx-auto" src="./logoroyle.png" alt="Anon's logo" width={90} height={30} />
                     </a>
                     <div className="relative min-[570px]:min-w-[300px] min-[768px]:grow">
-                        <input className="placeholder:font-inherit block w-full font-inherit font-[0.875rem] text-inherit py-[10px] px-[15px] pr-[50px] border border-b-slate-300 rounded-[10px] outline-none appearance-none" type="search" name="search" placeholder="Enter your product name..." />
+                        <input className="placeholder:font-inherit block w-full font-inherit font-[0.875rem] text-inherit py-[10px] px-[15px] pr-[50px] border border-b-slate-300 rounded-[10px] outline-none appearance-none" type="search" name="search" placeholder="Ingrese el nombre de su producto..." />
                         <button className="block bg-transparent font-inherit border-none cursor-pointer bg-white absolute top-[50%] right-[2px] transform -translate-y-1/2 text-inherit text-[18px] py-[8px] px-[15px] transition-colors duration-200 ease hover:text-pink-600">
                             <IoSearchOutline />
                         </button>
@@ -246,9 +250,9 @@ function Header({ totalProducts }) {
                             <LiaHeart />
                             <span className="inline-block min-[1024px]:absolute min-[1024px]:top-[-2px] min-[1024px]:right-[-3] min-[1024px]:bg-orange-600 min-[1024px]:text-white min-[1024px]:text-[12px] min-[1024px]:font-[500] min-[1024px]:leading-none min-[1024px]:py-[2px] min-[1024px]:px-[4px] min-[1024px]:rounded-[20px]">0</span>
                         </button>
-                        <button className="block bg-transparent font-inherit border-none cursor-pointer min-[1024px]:relative min-[1024px]:text-[35px] min-[1024px]:text-zinc-400 min-[1024px]:p-[5px]">
-                            <IoBagHandleOutline />
-                            <span className="inline-block min-[1024px]:absolute min-[1024px]:top-[-2px] min-[1024px]:right-[-3] min-[1024px]:bg-orange-600 min-[1024px]:text-white min-[1024px]:text-[12px] min-[1024px]:font-[500] min-[1024px]:leading-none min-[1024px]:py-[2px] min-[1024px]:px-[4px] min-[1024px]:rounded-[20px]">0</span>
+                        <button className="block bg-transparent font-inherit border-none cursor-pointer min-[1024px]:relative min-[1024px]:text-[35px] min-[1024px]:text-zinc-400 min-[1024px]:p-[5px]" onClick={handleCardOpen}>
+                            <BsCart4 />
+                            <span className="inline-block min-[1024px]:absolute min-[1024px]:top-[-2px] min-[1024px]:right-[-3] min-[1024px]:bg-orange-600 min-[1024px]:text-white min-[1024px]:text-[12px] min-[1024px]:font-[500] min-[1024px]:leading-none min-[1024px]:py-[2px] min-[1024px]:px-[4px] min-[1024px]:rounded-[20px]">{cartItems.length}</span>
                         </button>
                     </div>
                 </div>
@@ -262,7 +266,7 @@ function Header({ totalProducts }) {
                     <ul className="min-[1024px]:relative min-[1024px]:flex min-[1024px]:justify-center min-[1024px]:items-center min-[1024px]:gap-[30px] min-[1200px]:gap-[45px] ">
 
                         <li className="list-none min-[1024px]:relative">
-                            <a href="#" className="no-underline block min-[1024px]:relative min-[1024px]:text-zinc-700 min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:uppercase min-[1024px]:py-[15px] min-[1024px]:px-[0px] min-[1024px]:transition min-[1024px]:duration-200 ease min-[1024px]:hover:text-pink-600 min-[1024px]:after:content-none min-[1024px]:after:absolute min-[1024px]:after:bottom-0 min-[1024px]:after:left-0 min-[1024px]:after:w-full min-[1024px]:after:h-[2px] min-[1024px]:after:bg-pink-600 min-[1024px]:after:scale-x-0 min-[1024px]:after:origin-left min-[1024px]:after:transition min-[1024px]:after:duration-200 ease-ease min-[1024px]:hover::after:scale-x-100">Home</a>
+                            <a href="#" className="no-underline block min-[1024px]:relative min-[1024px]:text-zinc-700 min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:uppercase min-[1024px]:py-[15px] min-[1024px]:px-[0px] min-[1024px]:transition min-[1024px]:duration-200 ease min-[1024px]:hover:text-pink-600 min-[1024px]:after:content-none min-[1024px]:after:absolute min-[1024px]:after:bottom-0 min-[1024px]:after:left-0 min-[1024px]:after:w-full min-[1024px]:after:h-[2px] min-[1024px]:after:bg-pink-600 min-[1024px]:after:scale-x-0 min-[1024px]:after:origin-left min-[1024px]:after:transition min-[1024px]:after:duration-200 ease-ease min-[1024px]:hover::after:scale-x-100">Inicio</a>
                         </li>
 
                         <li className="list-none">
@@ -272,22 +276,26 @@ function Header({ totalProducts }) {
                                 onMouseEnter={handleMouseMouseEnter}
                                 onMouseLeave={handleMouseMouseLeave}
                             >
-                                Categories
+                                Categorias
                             </a>
 
                             <div
-                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-full min-[1024px]:grid min-[1024px]:grid-cols-4 min-[1024px]:gap-[30px] min-[1024px]:p-[30px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/4 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isMenMouselOpen ? 'min-[1024px]:opacity-100 min-[1024px]:visible min-[1024px]:pointer-events-auto' : 'min-[1024px]:opacity-0 min-[1024px]:invisible min-[1024px]:pointer-events-none'
+                                className={`min-[1024px]:absolute min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-full min-[1024px]:grid min-[1024px]:grid-cols-4 min-[1024px]:gap-[30px] min-[1024px]:p-[30px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/2 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isMenMouselOpen
+                                    ? "min-[1024px]:opacity-100 min-[1024px]:visible min-[1024px]:pointer-events-auto"
+                                    : "min-[1024px]:opacity-0 min-[1024px]:invisible min-[1024px]:pointer-events-none"
                                     }`}
+                                onMouseEnter={handleMouseMouseEnter}
+                                onMouseLeave={handleMouseMouseLeave}
                             >
 
                                 <ul>
 
                                     <li className="list-none">
-                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Electronics</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Electronicos</a>
                                     </li>
 
                                     <li className="list-none  min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Desktop</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Computadoras</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
@@ -295,7 +303,7 @@ function Header({ totalProducts }) {
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Camera</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Camara</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
@@ -303,7 +311,7 @@ function Header({ totalProducts }) {
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Headphone</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Audifonos</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
@@ -318,7 +326,7 @@ function Header({ totalProducts }) {
                                 <ul>
 
                                     <li className="list-none">
-                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Men's</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Hombres</a>
                                     </li>
 
                                     <li className="list-none  min-[1024px]:mt-[20px]">
@@ -330,15 +338,15 @@ function Header({ totalProducts }) {
                                     </li>
 
                                     <li className="list-none  min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Sports</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Deportes</a>
                                     </li>
 
                                     <li className="list-none  min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Jacket</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Chaqueta</a>
                                     </li>
 
                                     <li className="list-none  min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Sunglasses</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Lentes</a>
                                     </li>
 
                                     <li className="list-none  min-[1024px]:mt-[20px]">
@@ -352,7 +360,7 @@ function Header({ totalProducts }) {
                                 <ul>
 
                                     <li className="list-none">
-                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Women's</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Mujeres</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
@@ -368,11 +376,11 @@ function Header({ totalProducts }) {
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Cosmetics</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Cosmeticos</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Bags</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">bolsos & Cartera</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
@@ -386,19 +394,19 @@ function Header({ totalProducts }) {
                                 <ul >
 
                                     <li className="list-none ">
-                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Electronics</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:pb-[10px] min-[1024px]:border-solid min-[1024px]:border-b min-[1024px]:border-red-500 min-[1024px]:mb-[10px]">Electronicos & Accesorios</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Smart Watch</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Reloj Watch</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Smart TV</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Monitor</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Keyboard</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Teclado</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
@@ -406,7 +414,7 @@ function Header({ totalProducts }) {
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
-                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Microphone</a>
+                                        <a href="#" className="no-underline block min-[1024px]:text-slate-400 min-[1024px]:font-[0.875rem] min-[1024px]:capitalize min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600 min-[1024px]:py-[4px]">Microfonos</a>
                                     </li>
 
                                     <li className="list-none min-[1024px]:mt-[20px]">
@@ -427,18 +435,20 @@ function Header({ totalProducts }) {
                                 onMouseEnter={handleMenMouseEnter}
                                 onMouseLeave={handleMenMouseLeave}
                             >
-                                Men's
+                                Hombres
                             </a>
 
                             <ul
-                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/4 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isMenPanelOpen
+                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/2 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isMenPanelOpen
                                     ? 'min-[1024px]:opacity-100 min-[1024px]:visible min-[1024px]:pointer-events-auto'
                                     : 'min-[1024px]:opacity-0 min-[1024px]:invisible min-[1024px]:pointer-events-none'
                                     }`}
+                                onMouseEnter={handleMenMouseEnter}
+                                onMouseLeave={handleMenMouseLeave}
                             >
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Shirt</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Polera</a>
                                 </li>
 
                                 <li class="dropdown-item">
@@ -446,11 +456,11 @@ function Header({ totalProducts }) {
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Safety Shoes</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Zapatillas</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Wallet</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">billeteras</a>
                                 </li>
 
                             </ul>
@@ -463,29 +473,31 @@ function Header({ totalProducts }) {
                                 onMouseEnter={handleWomenMouseEnter}
                                 onMouseLeave={handleWomenMouseLeave}
                             >
-                                Women
+                                Mujeres
                             </a>
                             <ul
-                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/4 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isWomenPanelOpen
+                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/2 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isWomenPanelOpen
                                     ? 'min-[1024px]:opacity-100 min-[1024px]:visible min-[1024px]:pointer-events-auto'
                                     : 'min-[1024px]:opacity-0 min-[1024px]:invisible min-[1024px]:pointer-events-none'
                                     }`}
+                                onMouseEnter={handleWomenMouseEnter}
+                                onMouseLeave={handleWomenMouseLeave}
                             >
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Dress & Frock</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Vestido</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Earrings</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Aros</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Necklace</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Collares</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Makeup Kit</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Kit de maquillaje</a>
                                 </li>
 
                             </ul>
@@ -498,30 +510,32 @@ function Header({ totalProducts }) {
                                 onMouseEnter={handleJewelryMouseEnter}
                                 onMouseLeave={handleJewelryMouseLeave}
                             >
-                                Jewelry
+                                Joyas
                             </a>
 
                             <ul
-                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/4 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isJewelryPanelOpen
+                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/2 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isJewelryPanelOpen
                                     ? 'min-[1024px]:opacity-100 min-[1024px]:visible min-[1024px]:pointer-events-auto'
                                     : 'min-[1024px]:opacity-0 min-[1024px]:invisible min-[1024px]:pointer-events-none'
                                     }`}
+                                onMouseEnter={handleJewelryMouseEnter}
+                                onMouseLeave={handleJewelryMouseLeave}
                             >
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block  min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Earrings</a>
+                                    <a href="#" className="no-underline block  min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Aros</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Couple Rings</a>
+                                    <a href="#" className="min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Anillos</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Necklace</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Collares</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Bracelets</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Pulseras</a>
                                 </li>
 
                             </ul>
@@ -538,26 +552,28 @@ function Header({ totalProducts }) {
                             </a>
 
                             <ul
-                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/4 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isPerfumePanelOpen
+                                className={`min-[1024px]:absolute min-[1024px]:top-[100%] min-[1024px]:left-0 min-[1024px]:bg-white min-[1024px]:w-[200px] min-[1024px]:py-[20px] min-[1024px]:border min-[1024px]:border-slate-200 min-[1024px]:shadow-custom min-[1024px]:rounded-[10px] min-[1024px]:translate-y-2/2 min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:z-[5] ${isPerfumePanelOpen
                                     ? 'min-[1024px]:opacity-100 min-[1024px]:visible min-[1024px]:pointer-events-auto'
                                     : 'min-[1024px]:opacity-0 min-[1024px]:invisible min-[1024px]:pointer-events-none'
                                     }`}
+                                onMouseEnter={handlePerfumeMouseEnter}
+                                onMouseLeave={handlePerfumeMouseLeave}
                             >
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Clothes Perfume</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Perfumes para ropa</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Deodorant</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Desodorantes</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Flower Fragrance</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Fragancia floral</a>
                                 </li>
 
                                 <li class="dropdown-item">
-                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Air Freshener</a>
+                                    <a href="#" className="no-underline block min-[1024px]:text-inherit min-[1024px]:font-[0.874rem] min-[1024px]:capitalize min-[1024px]:py-[4px] min-[1024px]:px-[20px] min-[1024px]:transition min-[1024px]:duration-200 ease-ease min-[1024px]:hover:text-pink-600">Ambientador</a>
                                 </li>
 
                             </ul>
@@ -568,7 +584,7 @@ function Header({ totalProducts }) {
                         </li>
 
                         <li className="list-none min-[1024px]:relative">
-                            <a href="#" className="no-underline block min-[1024px]:relative min-[1024px]:text-zinc-700 min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:uppercase min-[1024px]:py-[15px] min-[1024px]:px-[0px] min-[1024px]:transition min-[1024px]:duration-200 ease min-[1024px]:hover:text-pink-600 min-[1024px]:after:content-none min-[1024px]:after:absolute min-[1024px]:after:bottom-0 min-[1024px]:after:left-0 min-[1024px]:after:w-full min-[1024px]:after:h-[2px] min-[1024px]:after:bg-pink-600 min-[1024px]:after:scale-x-0 min-[1024px]:after:origin-left min-[1024px]:after:transition min-[1024px]:after:duration-200 ease-ease min-[1024px]:hover::after:scale-x-100">Hot Offers</a>
+                            <a href="#" className="no-underline block min-[1024px]:relative min-[1024px]:text-zinc-700 min-[1024px]:text-[0.875rem] min-[1024px]:font-[600] min-[1024px]:uppercase min-[1024px]:py-[15px] min-[1024px]:px-[0px] min-[1024px]:transition min-[1024px]:duration-200 ease min-[1024px]:hover:text-pink-600 min-[1024px]:after:content-none min-[1024px]:after:absolute min-[1024px]:after:bottom-0 min-[1024px]:after:left-0 min-[1024px]:after:w-full min-[1024px]:after:h-[2px] min-[1024px]:after:bg-pink-600 min-[1024px]:after:scale-x-0 min-[1024px]:after:origin-left min-[1024px]:after:transition min-[1024px]:after:duration-200 ease-ease min-[1024px]:hover::after:scale-x-100">Ofertas</a>
                         </li>
 
                     </ul>
@@ -594,7 +610,10 @@ function Header({ totalProducts }) {
                     </span>
                 </button>
 
-                <button className="block bg-transparent font-inherit border-none cursor-pointer relative text-[26px] text-zinc-900 p-[10px]">
+                <button
+                    className="block bg-transparent font-inherit border-none cursor-pointer relative text-[26px] text-zinc-900 p-[10px]"
+                    onClick={handleHomeButtonClick}
+                >
                     <GrHomeRounded />
                 </button>
 
@@ -606,7 +625,7 @@ function Header({ totalProducts }) {
 
                 <button
                     className="block bg-transparent font-inherit border-none cursor-pointer relative text-[26px] text-zinc-900 p-[10px]"
-                    onClick={handleMainsButtonClick}
+                    onClick={handleCategoryOpen}
                 >
                     <TfiLayoutGrid2 />
                 </button>
@@ -617,194 +636,195 @@ function Header({ totalProducts }) {
 
 
             {isMenuOpen && (
+                <div>
 
-                <nav className="bg-white fixed top-0 left-0 w-full max-w-[320px] h-[100vh] p-[20px] shadow-custom overflow-y-scroll overscroll-contain transition-all duration-500 ease-linear z-[20] min-[1024px]:hidden">
+                    <div className="fixed bg-trans blur-sm top-0 h-full animate-slideInFromleft left-0 w-full z-20" onClick={handleCloseClick}></div>
+                    <nav className="bg-white fixed animate-slideInFromleft top-0  left-0 w-full max-w-[320px] h-[100vh] p-[20px] shadow-custom overflow-y-scroll overscroll-contain transition-all duration-500 ease-linear z-[20] min-[1024px]:hidden">
 
-                    <div className="pb-[15px] mb-[10px] flex justify-between items-center border-b-2 border-zinc-300">
-                        <h2 className="text-pink-600 text-[1.125rem] font-[600]">Menu</h2>
+                        <div className="pb-[15px] mb-[10px] flex justify-between items-center border-b-2 border-zinc-300">
+                            <h2 className="text-red-600 text-[1.125rem] font-[600]">Menu</h2>
 
-                        <button className="block bg-transparent font-inherit border-none cursor-pointer text-zinc-900 text-[22px]" onClick={handleCloseClick}>
-                            <IoCloseSharp className="block" />
-                        </button>
-                    </div>
-
-                    <ul className="mb-[30px]">
-
-                        <li className="list-none border-b border-zinc-300">
-                            <a href="#" className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Home</a>
-                        </li>
-
-                        <li className="list-none border-b border-zinc-300">
-
-                            <button className=" w-full flex justify-between items-center" onClick={toggleDressSubmenu}>
-                                <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Dress & Frock</p>
-                                {isDressOpen ? (
-                                    <IoIosRemove className="block text-gray-700 remove-icon" onClick={closeDressSubmenu} />
-                                ) : (
-                                    <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
-                                )}
+                            <button className="block bg-transparent font-inherit border-none cursor-pointer text-zinc-900 text-[22px]" onClick={handleCloseClick}>
+                                <IoCloseSharp className="block" />
                             </button>
+                        </div>
 
-                            {isDressOpen && (
-                                <ul className="ml-[10px] before:max-h-0 before:overflow-hidden before:invisible before: after:max-h-[140px] after:visible after:duration-500 ease-in-out">
-                                    <li className="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
-                                            Dress & Frock
-                                        </a>
-                                    </li>
-                                    <li className="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
-                                            Earrings
-                                        </a>
-                                    </li>
-                                    <li className="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
-                                            Necklace
-                                        </a>
-                                    </li>
-                                    <li className="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
-                                            Makeup Kit
-                                        </a>
-                                    </li>
-                                </ul>
-                            )}
-                        </li>
+                        <ul className="mb-[30px]">
 
-                        <li className="list-none border-b border-zinc-300">
+                            <li className="list-none border-b border-zinc-300">
+                                <a href="#" className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Inicio</a>
+                            </li>
 
-                            <button className=" w-full flex justify-between items-center" onClick={toggleWomenSubmenu}>
-                                <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">women's</p>
-                                {isWomenOpen ? (
-                                    <IoIosRemove className="block text-gray-700 remove-icon" onClick={closeWomenSubmenu} />
-                                ) : (
-                                    <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
-                                )}
-                            </button>
+                            <li className="list-none border-b  border-zinc-300">
 
-                            {isWomenOpen && (
-                                <ul className="ml-[10px] before:max-h-0 before:overflow-hidden before:invisible before: after:max-h-[140px] after:visible after:duration-500 ease-in-out">
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Dress & Frock</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Earrings</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Necklace</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Makeup Kit</a>
-                                    </li>
-
-                                </ul>
-                            )}
-
-                        </li>
-
-                        <li className="list-none border-b border-zinc-300">
-
-                            <button className=" w-full flex justify-between items-center" onClick={toggleJewelrySubmenu}>
-                                <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Jewelry</p>
-                                {isJewelryOpen ? (
-                                    <IoIosRemove className="block text-gray-700 remove-icon" onClick={closeJewelrySubmenu} />
-                                ) : (
-                                    <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
-                                )}
-                            </button>
-
-                            {isJewelryOpen && (
-                                <ul className="ml-[10px] before:max-h-0 before:overflow-hidden before:invisible before: after:max-h-[140px] after:visible after:duration-500 ease-in-out">
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Earrings</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Couple Rings</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Necklace</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Bracelets</a>
-                                    </li>
-
-                                </ul>
-                            )}
-
-                        </li>
-
-                        <li className="list-none border-b border-zinc-300">
-
-                            <button className=" w-full flex justify-between items-center" onClick={togglePerfumeSubmenu}>
-                                <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Perfume</p>
-                                {isPerfumeOpen ? (
-                                    <IoIosRemove className="block text-gray-700 remove-icon" onClick={closePerfumeSubmenu} />
-                                ) : (
-                                    <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
-                                )}
-                            </button>
-
-                            {isPerfumeOpen && (
-                                <ul className="ml-[10px] before:max-h-0 before:overflow-hidden before:invisible before: after:max-h-[140px] after:visible after:duration-500 ease-in-out">
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Clothes Perfume</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Deodorant</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Flower Fragrance</a>
-                                    </li>
-
-                                    <li class="submenu-category">
-                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Air Freshener</a>
-                                    </li>
-
-                                </ul>
-                            )}
-
-                        </li>
-
-                        <li className="list-none border-b border-zinc-300">
-                            <a href="#" className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Blog</a>
-                        </li>
-
-                        <li className="list-none border-b border-zinc-300">
-                            <a href="#" className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Hot Offers</a>
-                        </li>
-
-                    </ul>
-
-                    <div class="menu-bottom">
-
-                        <ul className="mb-[20px]">
-
-                            <li className="list-none">
-                                <button
-                                    className="font-inherit border-none w-full cursor-pointer bg-none flex items-center justify-between"
-                                    onClick={toggleLenguageMenu}
-                                >
-                                    <p className="text-[0.938rem] font-[500] text-zinc-900 py-[12px] px-[0]">
-                                        Language
-                                    </p>
-                                    <IoCaretBack>
-                                        className={`transform ${isLenguageOpen ? 'rotate-[-90deg]' : 'rotate-0'}`}
-                                    </IoCaretBack>
+                                <button className=" w-full flex justify-between items-center" onClick={toggleDressSubmenu}>
+                                    <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Ropas</p>
+                                    {isDressOpen ? (
+                                        <IoIosRemove className="block text-gray-700 remove-icon" onClick={closeDressSubmenu} />
+                                    ) : (
+                                        <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
+                                    )}
                                 </button>
 
-                                {isLenguageOpen && (
-                                    <ul className="border border-l-zinc-300 rounded-[10px] py-[0] px-[15px] ml-[0] shadow-custom">
+
+                                <ul className={isDressOpen ? 'py-[13px] mb-8 px-[0px] pb-[8px] border-t border-zinc-950 max-h-[122px] visible duration-500 ease-in-out' : '  max-h-0 overflow-hidden invisible duration-500 ease-in-out'}>
+                                    <li className="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
+                                            Vestidos & Conjuntos
+                                        </a>
+                                    </li>
+                                    <li className="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
+                                            Poleras
+                                        </a>
+                                    </li>
+                                    <li className="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
+                                            Polerones
+                                        </a>
+                                    </li>
+                                    <li className="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">
+                                            pantalones
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                            <li className="list-none border-b border-zinc-300">
+
+                                <button className=" w-full flex justify-between items-center" onClick={toggleWomenSubmenu}>
+                                    <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Para Mujeres</p>
+                                    {isWomenOpen ? (
+                                        <IoIosRemove className="block text-gray-700 remove-icon" onClick={closeWomenSubmenu} />
+                                    ) : (
+                                        <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
+                                    )}
+                                </button>
+
+
+                                <ul className={isWomenOpen ? 'py-[13px] mb-8 px-[0px] pb-[8px] border-t border-zinc-950 max-h-[122px] visible duration-500 ease-in-out' : '  max-h-0 overflow-hidden invisible duration-500 ease-in-out'}>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Vestidos & Blusas</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Aretes</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Collares</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">kit de maquillages</a>
+                                    </li>
+
+                                </ul>
+
+
+                            </li>
+
+                            <li className="list-none border-b border-zinc-300">
+
+                                <button className=" w-full flex justify-between items-center" onClick={toggleJewelrySubmenu}>
+                                    <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Joyas</p>
+                                    {isJewelryOpen ? (
+                                        <IoIosRemove className="block text-gray-700 remove-icon" onClick={closeJewelrySubmenu} />
+                                    ) : (
+                                        <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
+                                    )}
+                                </button>
+
+
+                                <ul className={isJewelryOpen ? 'py-[13px] mb-8 px-[0px] pb-[8px] border-t border-zinc-950 max-h-[122px] visible duration-500 ease-in-out' : '  max-h-0 overflow-hidden invisible duration-500 ease-in-out'}>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Aros</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Anillos</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Collares</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Pulseras</a>
+                                    </li>
+                                </ul>
+
+
+                            </li>
+
+                            <li className="list-none border-b border-zinc-300">
+
+                                <button className=" w-full flex justify-between items-center" onClick={togglePerfumeSubmenu}>
+                                    <p className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Perfume</p>
+                                    {isPerfumeOpen ? (
+                                        <IoIosRemove className="block text-gray-700 remove-icon" onClick={closePerfumeSubmenu} />
+                                    ) : (
+                                        <GrFormAdd className="block text-gray-700 stroke-ionicon add-icon" />
+                                    )}
+                                </button>
+
+
+                                <ul className={isPerfumeOpen ? 'py-[13px] mb-8 px-[0px] pb-[8px] border-t border-zinc-950 max-h-[122px] visible duration-500 ease-in-out' : '  max-h-0 overflow-hidden invisible duration-500 ease-in-out'}>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Perfume para Ropas</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Desodorantes</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Fragancia Floral</a>
+                                    </li>
+
+                                    <li class="submenu-category">
+                                        <a href="#" className="no-underline block py-[6px] text-[0.938rem] text-gray-600 font-[300] hover:text-gray-300">Ambientador</a>
+                                    </li>
+
+                                </ul>
+
+
+                            </li>
+
+                            <li className="list-none border-b border-zinc-300">
+                                <a href="#" className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Blog</a>
+                            </li>
+
+                            <li className="list-none border-b border-zinc-300">
+                                <a href="#" className="no-underline block text-gray-700 text-[0.938rem] font-[500] py-[12px] px-[0]">Ofertas</a>
+                            </li>
+
+                        </ul>
+
+                        <div class="menu-bottom">
+
+                            <ul className="mb-[20px]">
+
+                                <li className="list-none">
+                                    <button
+                                        className="font-inherit border-none w-full cursor-pointer bg-none flex items-center justify-between"
+                                        onClick={toggleLenguageMenu}
+                                    >
+                                        <p className="text-[0.938rem] font-[500] text-zinc-900 py-[12px] px-[0]">
+                                            Language
+                                        </p>
+                                        <IoCaretBack>
+                                            className={`transform ${isLenguageOpen ? 'rotate-[-90deg]' : 'rotate-0'}`}
+                                        </IoCaretBack>
+                                    </button>
+
+
+                                    <ul className={isLenguageOpen ? ' px-[15px]  border border-l-zinc-300 rounded-[10px] shadow-custom max-h-[100px] visible duration-500 ease-in-out' : '  max-h-0 overflow-hidden invisible duration-500 ease-in-out'}>
                                         <li className="list-none border-b border-gray-300">
                                             <a href="#" className="block no-underline">
                                                 English
@@ -816,26 +836,26 @@ function Header({ totalProducts }) {
                                             </a>
                                         </li>
                                     </ul>
-                                )}
-                            </li>
+
+                                </li>
 
 
 
-                            <li className="list-none border-none">
-                                <button
-                                    className="font-inherit border-none cursor-pointer bg-none accordion-menu w-full flex items-center justify-between"
-                                    onClick={toggleCurrencyMenu}
-                                >
-                                    <p className="text-[0.938rem] font-[500] text-zinc-900 py-[12px] px-[0]">
-                                        Currency
-                                    </p>
-                                    <IoCaretBack
-                                        className={`transform ${isCurrencyOpen ? 'rotate-[-90deg]' : 'rotate-0'}`}
-                                    />
-                                </button>
+                                <li className="list-none border-none">
+                                    <button
+                                        className="font-inherit border-none cursor-pointer bg-none accordion-menu w-full flex items-center justify-between"
+                                        onClick={toggleCurrencyMenu}
+                                    >
+                                        <p className="text-[0.938rem] font-[500] text-zinc-900 py-[12px] px-[0]">
+                                            Currency
+                                        </p>
+                                        <IoCaretBack
+                                            className={`transform ${isCurrencyOpen ? 'rotate-[-90deg]' : 'rotate-0'}`}
+                                        />
+                                    </button>
 
-                                {isCurrencyOpen && (
-                                    <ul className="border border-l-zinc-300 rounded-[10px] py-[0] px-[15px] ml-[0] shadow-custom">
+
+                                    <ul className={isCurrencyOpen ? ' px-[15px]  border border-l-zinc-300 rounded-[10px] shadow-custom max-h-[100px] visible duration-500 ease-in-out' : '  max-h-0 overflow-hidden invisible duration-500 ease-in-out'}>
                                         <li className="list-none border-b border-gray-300">
                                             <a href="#" className="block no-underline">USD &dollar;</a>
                                         </li>
@@ -844,42 +864,50 @@ function Header({ totalProducts }) {
                                             <a href="#" className="block no-underline">EUR &euro;</a>
                                         </li>
                                     </ul>
-                                )}
-
-                            </li>
-
-                        </ul>
-
-                        <ul className="flex justify-center items-center gap-[10px]">
-
-                            <li className="list-none">
-                                <a href="#" className="block no-underline bg-slate-300 text-zinc-900 text-[20px] p-[10px] rounded-[10px]">
-                                    <BsFacebook />
-                                </a>
-                            </li>
-
-                            <li className="list-none">
-                                <a href="#" className="block no-underline bg-slate-300 text-zinc-900 text-[20px] p-[10px] rounded-[10px]">
-                                    <RiWhatsappFill />
-                                </a>
-                            </li>
-
-                            <li className="list-none">
-                                <a href="#" className="block no-underline bg-slate-300 text-zinc-900 text-[20px] p-[10px] rounded-[10px]">
-                                    <AiOutlineInstagram />
-                                </a>
-                            </li>
-
-                        </ul>
-
-                    </div>
 
 
-                </nav>
+                                </li>
+
+                            </ul>
+
+                            <ul className="flex justify-center items-center gap-[10px]">
+
+                                <li className="list-none">
+                                    <a href="#" className="block no-underline bg-slate-300 text-zinc-900 text-[20px] p-[10px] rounded-[10px]">
+                                        <BsFacebook />
+                                    </a>
+                                </li>
+
+                                <li className="list-none">
+                                    <a href="#" className="block no-underline bg-slate-300 text-zinc-900 text-[20px] p-[10px] rounded-[10px]">
+                                        <RiWhatsappFill />
+                                    </a>
+                                </li>
+
+                                <li className="list-none">
+                                    <a href="#" className="block no-underline bg-slate-300 text-zinc-900 text-[20px] p-[10px] rounded-[10px]">
+                                        <AiOutlineInstagram />
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+
+                    </nav>
+                </div>
+
             )}
 
 
-            {isMainsOpen && <Mains isMainsOpen={isMainsOpen} onClose={handleMainsClose} />}
+            {isCategoryOpen && (
+                <Mains
+                    isCategoryOpen={isCategoryOpen}
+                    onClose={handleCategoryClose}
+                />
+            )}
+
             {isCardOpen && (
                 <Card
                     isCardOpen={isCardOpen}
@@ -887,7 +915,7 @@ function Header({ totalProducts }) {
                 />
             )}
 
-            
+
 
         </header>
     );

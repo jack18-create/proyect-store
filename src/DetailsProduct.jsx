@@ -7,7 +7,7 @@ import Card from "./card";
 
 import { CartContext } from "./CartContext"; // Importar el contexto
 
-const DetailsProduct = ({ description, title, img1, img2, price, pricefake, isDetailsOpen, onClose }) => {
+const DetailsProduct = ({ description, title, img1, img2, price, pricefake, pricetachao, isDetailsOpen, onClose }) => {
     const [quantity, setQuantity] = useState(0);
 
     const [cardProps, setCardProps] = useState(null);
@@ -98,7 +98,7 @@ const DetailsProduct = ({ description, title, img1, img2, price, pricefake, isDe
                                 </a>
                                 <div className="price-box flex gap-[19px] justify-between items-center my-[20px]">
                                     <p className="price text-[24px] uppercase leading-5">{pricefake}</p>
-                                    <del className="text-[15px] text-stone-400 leading-5">$23.00</del>
+                                    <del className="text-[15px] text-stone-400 leading-5">${pricetachao}</del>
                                 </div>
                                 <div className="flex items-center justify-around bg-slate-200 h-[50px] w-full rounded-[10px] mb-[15px]">
                                     <button className="text-amber-500 font-extrabold" onClick={handleDecrease}>
@@ -106,7 +106,7 @@ const DetailsProduct = ({ description, title, img1, img2, price, pricefake, isDe
                                     </button>
                                     <a href="">{quantity}</a>
                                     <button className="text-orange-500 font-extrabold" onClick={handleIncrease}>
-                                        <IoAddSharp />
+                                        <p><IoAddSharp /></p>
                                     </button>
                                 </div>
                                 <button

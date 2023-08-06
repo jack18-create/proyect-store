@@ -125,6 +125,7 @@ const ProductoMain = (props) => {
                     img1={img1}
                     img2={img2}
                     pricefake={pricefake}
+                    pricetachao={pricetachao}
                     price={price}
                     onClose={handleDetailsClose}
                 />

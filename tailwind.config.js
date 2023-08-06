@@ -50,6 +50,26 @@ export default {
             visibility: 'visible',
           },
         },
+        slideInFromleft: {
+          '0%': {
+            transform: 'translateX(calc(0% - 40px))',
+            opacity: 0,
+            visibility: 'hidden',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            opacity: 1,
+            visibility: 'visible',
+          },
+        },
+        circularShapeAnimation: {
+          '0%': {
+            'border-radius': '5px',
+          },
+          '100%': {
+            'border-radius': '50%',
+          },
+        },
 
 
 
@@ -59,7 +79,8 @@ export default {
         scaleUp: 'scaleUp 0.5s ease-in-out 5s forwards',
         slideInOut: 'slideInOut 10s ease-in-out infinite',
         slideInFromRight: 'slideInFromRight 0.2s ease-in-out ',
-
+        slideInFromleft: 'slideInFromleft 0.2s ease-in-out ',
+        circularShapeAnimation: 'circularShapeAnimation',
       },
       width: {
         custom: 'calc(100% - 85px)',
@@ -67,7 +88,7 @@ export default {
       margin: {
         auto: 'auto',
       },
-      
+
       transitionDuration: {
         '200': '0.2s',
       },
@@ -88,6 +109,7 @@ export default {
         'custom': 'hsla(0, 0%, 0%, 0.6)',
         'y2k': 'hsla(0, 0%, 0%, 0.8)',
         'suave': 'hsla(0, 0%, 0%, 0.3)',
+        'trans': 'hsla(0, 5%, 0%, 0.1)',
 
       },
       transform: {
@@ -136,7 +158,7 @@ export default {
   },
   plugins: [
     require('tailwind-scrollbar'),
-    
+
     // ...
   ],
 };
