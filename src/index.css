@@ -8,15 +8,21 @@
   #RESET
 \*-----------------------------------*/
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-a { text-decoration: none; }
+a {
+  text-decoration: none;
+}
 
-li { list-style: none; }
+li {
+  list-style: none;
+}
 
 button {
   background: none;
@@ -25,9 +31,16 @@ button {
   cursor: pointer;
 }
 
-img, ion-icon, button, a { display: block; }
+img,
+ion-icon,
+button,
+a {
+  display: block;
+}
 
-span { display: inline-block; }
+span {
+  display: inline-block;
+}
 
 html {
   font-family: "Poppins", sans-serif;
@@ -40,9 +53,11 @@ input {
   font: inherit;
 }
 
-input::placeholder { font: inherit; }
+input::placeholder {
+  font: inherit;
+}
 
-body { 
+body {
   background: var(--white);
 }
 
@@ -50,7 +65,9 @@ body {
  * scrollbar style
  */
 
-body::-webkit-scrollbar { width: 15px; }
+body::-webkit-scrollbar {
+  width: 15px;
+}
 
 body::-webkit-scrollbar-track {
   background: var(--white);
@@ -63,7 +80,9 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
-body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
+body::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 70%);
+}
 
 .title {
   color: var(--eerie-black);
@@ -76,4 +95,28 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   margin-bottom: 30px;
 }
 
+.product-image {
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  /* Establece la posición adecuada para que la imagen se superponga al icono del carrito */
+  /* Puedes ajustar estos valores según tu diseño */
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
+.product-image.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(20px, -20px);
+}
+
+.product-image.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(0);
+}

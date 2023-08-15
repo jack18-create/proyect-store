@@ -70,6 +70,14 @@ export default {
             'border-radius': '50%',
           },
         },
+        scroll: {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '100%': {
+            transform: 'translateX(calc(-100%))',
+          },
+        },
 
 
 
@@ -81,6 +89,7 @@ export default {
         slideInFromRight: 'slideInFromRight 0.2s ease-in-out ',
         slideInFromleft: 'slideInFromleft 0.2s ease-in-out ',
         circularShapeAnimation: 'circularShapeAnimation',
+        scroll: 'scroll 20s linear infinite',
       },
       width: {
         custom: 'calc(100% - 85px)',
@@ -109,7 +118,7 @@ export default {
         'custom': 'hsla(0, 0%, 0%, 0.6)',
         'y2k': 'hsla(0, 0%, 0%, 0.8)',
         'suave': 'hsla(0, 0%, 0%, 0.3)',
-        'trans': 'hsla(0, 5%, 0%, 0.1)',
+        'trans': 'hsla(0, 20%, 10%, 0.1)',
 
       },
       transform: {

@@ -4,15 +4,15 @@ import { GrFormAdd } from "react-icons/gr";
 import { PiBaseballCapFill } from "react-icons/pi";
 import { IoIosRemove, IoIosShirt } from "react-icons/io";
 import "./index.css";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import ProductMinimal from "./Product";
 import ProductMain from "./ProductoMains";
 import ProductRight from "./ProductRight";
+
 import { GiLargeDress, GiWinterHat, GiShorts, GiMonclerJacket } from "react-icons/gi";
 
 
-function Mains({ isCategoryOpen, onClose }) {
-    const [isMenuOpen, setIsMenuOpen] = useState(true);
+function Mains({ isCategoryOpen, onClose, products, scrollToRef }) {
 
     const [isClothesOpen, setIsClothesOpen] = useState(false);
     const [isFootwearOpen, setIsFootwearOpen] = useState(false);
@@ -116,17 +116,17 @@ function Mains({ isCategoryOpen, onClose }) {
 
     return (
 
-        <main className="">
+        <main className="" >
 
             <div class="banner" className='my-[30px] mx-[0px] min-[1024px]:mt-[0px]'>
 
-                <div class="container" className='py-[0px] px-[15px] min-[768px]:max-w-[750px] min-[768px]:m-auto min-[1024px]:max-w-[980px] min-[1200px]:max-w-[1200px] min-[1400px]:max-w-[1350px]'>
+                <div class="container" className=' py-[0px] px-[15px] min-[768px]:max-w-[750px] min-[768px]:m-auto min-[1024px]:max-w-[980px] min-[1200px]:max-w-[1200px] min-[1400px]:max-w-[1350px]'>
 
-                    <div class="slider-container has-scrollbar" className="flex items-center gap-[10px] rounded-[10px] overflow-x-auto overflow-y-contain snap-mandatory snap-x min-[1024px]:h-[380px] scrollbar-thin">
+                    <div className=" flex items-center gap-[10px] rounded-[10px] overflow-x-auto  overflow-x-contain  snap-mandatory snap-x min-[1024px]:h-[380px] ">
 
-                        <div class="slider-item" className='relative min-w-[100%] max-w-[450px] aspect-square rounded-[10px] overflow-hidden snap-start min-[480px]:aspect-[5/3] min-[570px]:aspect-[4/2] min-[768px]:aspect-[auto] min-[768px]:h-[350px] min-[1400px]:h-[450px]'>
+                        <div class="slider-item" className='relative bg-gradient-to-t from-stone-300/20 to-white min-w-[100%] max-w-[450px] aspect-square rounded-[10px] overflow-hidden snap-start min-[480px]:aspect-[5/3] min-[570px]:aspect-[4/2] min-[768px]:aspect-[auto] min-[768px]:h-[350px] min-[1400px]:h-[450px] min-[1400px]:rounded-[1s0px]'>
 
-                            <img src="./Ropamujer.jfif" alt="women's latest fashion sale" class="banner-img" className='w-full h-full object-cover object-right min-[480px]:object-contain  min-[480px]: min-[1200px]:object-top' />
+                            <img src="./starkenlogo.png" alt="women's latest fashion sale" class="banner-img" className='w-full h-[55%] object-cover object-center min-[480px]:object-contain  min-[480px]:   min-[1200px]:object-right min-[1200px]:object-scale-down min-[1400px]:h-[92%] min-[1400px]:object-scale-down min-[1400px]:object-center' />
 
                             <div class="banner-content" className='bg-zinc-300/40 absolute bottom-[25px] left-[25px] right-[25px] rounded-[10px] py-[20px] px-[25px] min-[480px]:top-[50%] min-[480px]:right-auto min-[480px]:bottom-auto min-[480px]:translate-y-[-50%] min-[480px]:max-w-[320px] min-[570px]:bg-inherit min-[768px]:max-w-[380px] min-[768px]:font-[1.25rem] min-[1024px]:l-[75px] min-[1024px]:max-w-[400px] min-[1400px]:max-w-[460px]'>
 
@@ -144,7 +144,7 @@ function Mains({ isCategoryOpen, onClose }) {
 
                         </div>
 
-                        <div class="slider-item" className='relative min-w-[100%] max-w-[450px] aspect-square rounded-[10px] overflow-hidden snap-start min-[480px]:aspect-[5/3] min-[570px]:aspect-[4/2] min-[768px]:aspect-[auto] min-[768px]:h-[350px] min-[1400px]:h-[450px]'>
+                        <div class="slider-item" className='relative  min-w-[100%] max-w-[450px] aspect-square rounded-[10px] overflow-hidden snap-start min-[480px]:aspect-[5/3] min-[570px]:aspect-[4/2] min-[768px]:aspect-[auto] min-[768px]:h-[350px] min-[1400px]:h-[450px]'>
 
                             <img src="./audifino.jpg" alt="modern sunglasses" class="banner-img" className='w-full h-full object-cover object-right min-[1200px]:object-top' />
 
@@ -1186,7 +1186,7 @@ function Mains({ isCategoryOpen, onClose }) {
 
 
 
-                        <div class="product-featured" className="mb-[30px]">
+                        <div class="product-featured" id="offters" className="mb-[30px]">
 
                             <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">Oferta del día</h2>
 
@@ -1195,17 +1195,17 @@ function Mains({ isCategoryOpen, onClose }) {
                                 <ProductRight
                                     pricefake="$ 43.000" // Pasa el precio como un número en lugar de una cadena
                                     price={43500}
-                                    pricetachao={53000}
+                                    pricetachao={49000}
                                     img="Casco-Moto.jpg"
                                     description="Es muy importante tener un buen Casco.
                                     la seguridad es muy importante para nuestros cliente"
                                     title="Casco Seguro"
                                 />
                                 <ProductRight
-                                    pricefake="$ 26.500" // Pasa el precio como un número en lugar de una cadena
-                                    price={26500}
-                                    pricetachao={28000}
-                                    img="Casco-Moto.jpg"
+                                    pricefake="$ 10.500" // Pasa el precio como un número en lugar de una cadena
+                                    price={10500}
+                                    pricetachao={14000}
+                                    img="Maseajador.jfif"
                                     description="Es muy importante tener un buen Casco.
                                     la seguridad es muy importante para nuestros cliente"
                                     title="Casco Seguro"
@@ -1236,33 +1236,194 @@ function Mains({ isCategoryOpen, onClose }) {
                         </div>
 
 
+                        {/* <div class="flex">
+                            <div class="handheld-sidebar-toggle">
+                                <button class="btn sidebar-toggler" type="button">
+                                    <i class="fas fa-sliders-h">
+                                    </i>
+                                    <span>Filtros</span>
+                                </button>
+                            </div>
+                            <ul class="shop-view-switcher nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" data-archive-class="grid" title="Vista De Cuadrícula" href="#grid">
+                                        <i class="fa fa-th">
+                                        </i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " data-toggle="tab" data-archive-class="grid-extended" title="Cuadrícula Vista Ampliada" href="#grid-extended">
+                                        <i class="fa fa-align-justify">
+                                        </i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " data-toggle="tab" data-archive-class="list-view" title="La Vista De Lista" href="#list-view">
+                                        <i class="fa fa-list">
+                                        </i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " data-toggle="tab" data-archive-class="list-view-small" title="La Vista De Lista Pequeña" href="#list-view-small">
+                                        <i class="fa fa-th-list">
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <form class="woocommerce-ordering" method="get">
+                                <select name="orderby" class="orderby" aria-label="Pedido de la tienda">
+                                    <option value="menu_order">Orden por defecto</option>
+                                    <option value="popularity">Ordenar por popularidad</option>
+                                    <option value="date">Ordenar por los últimos</option>
+                                    <option value="price">Ordenar por precio: bajo a alto</option>
+                                    <option value="price-desc" selected="selected">Ordenar por precio: alto a bajo</option>
+                                    <option value="alphabetical">Ordenar por nombre: A a Z</option>
+                                </select>
+                                <input type="hidden" name="paged" value="1" />
+                            </form>
+                            <form method="POST" action="" class="form-electro-wc-ppp">
+                                <select name="ppp" onchange="this.form.submit()" class="electro-wc-wppp-select c-select">
+                                    <option value="16">Show de 16</option>
+                                    <option value="32">Show de 32</option>
+                                    <option value="64">Show de 64</option>
+                                    <option value="128">Show de 128</option>
+                                    <option value="-1">Show de Todos</option>
+                                </select>
+                                <input type="hidden" name="orderby" value="price-desc" />
+                                <input type="hidden" name="jsM_kaiTcgmL" value="C5*iDo_kWh" />
+                                <input type="hidden" name="YrA_uhPpiHOLkUnl" value="AkbWZ4m" />
+                            </form>
+                            <div>
+                                <form action="">
+                                    <input type="text" />
+                                    <input type="text" />
+                                    <input type="text" />
+                                </form> de 10
+                                <a href="">→</a>
+                            </div>
+                            
+                        </div> */}
 
 
 
+                        <div class="product-main" id="oral" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">Para Ellas</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
 
 
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
 
-
-                        <div class="product-main" className="mb-[30px]">
-
-                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
-
-                            <div class="product-grid" className=" grid grid-cols-1 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
 
 
                                 <ProductMain
-                                    pricefake="$ 26.500" // Pasa el precio como un número en lugar de una cadena
-                                    price={26500}
-                                    pricetachao={28000}
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
                                     desc="30%"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="pollo entero acompañado mas papas fritas"
-                                    title="pollo entero"
+                                    img1="Adaptador USB Bluetooth Cam Girl.jpg"
+                                    img2="Adaptador USB Bluetooth Cam Girl 2.jpg"
+                                    description="El adaptador bluetooth USB Lovense esta diseñado exclusivamente para conectar juguetes Lovense a un PC Windows. Muy facil de configurar, no se necesitan habilidades tecnicas. Una vez ajustado puedes conectar hasta cinco juguetes al mismo tiempo.
+
+                                    Compatible con
+                                    – Windows 7
+                                    
+                                    – Windows 8
+                                    
+                                    – Windows 10
+                                    
+                                    ADEMAS, puedes conectar MAX 2 con tu PC windows y Jugar “Mirror Life”, Juego de realidad Virtual.
+                                    
+                                    Adaptador USB Bluetooth Cam Girl
+                                    
+                                    Importante: Todos los empaques de nuestros productos han sido creados para mantener de forma optima todas sus características Organolépticas, (olor, color, textura, etc). Cualquier alteración al packing original puede afectar la calidad del producto y cualquier proceso de garantía."
+                                    title="Adaptador USB Bluetooth Cam Girl"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="Arnes & Protesis Unisex (Vibración Regulable, 18 cm).jpg"
+                                    img2="Arnes & Protesis Unisex (Vibración Regulable, 18 cm) 2.jpg"
+                                    description="fghgf"
+                                    title="papas fritas"
                                     badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
                                 />
 
                                 <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
                                     pricefake="$16.500"
                                     price={16500}
                                     pricetachao={18000}
@@ -1270,11 +1431,11 @@ function Mains({ isCategoryOpen, onClose }) {
                                     img1="pollo.png"
                                     img2="sushi.png"
                                     description="pollo mas bebida de 1/5L"
-                                    title="1/4 de pollo"
+                                    title="1/4 de pollo - 1"
                                     badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
                                 />
-
                                 <ProductMain
+                                    key="papas fritas"
                                     pricefake="$13.500"
                                     price={13500}
                                     pricetachao={15000}
@@ -1282,7 +1443,7 @@ function Mains({ isCategoryOpen, onClose }) {
                                     img1="pollo.png"
                                     img2="sushi.png"
                                     description="fghgf"
-                                    title="1/2 de pollo"
+                                    title="papas fritas"
                                     badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
                                 />
 
@@ -1308,88 +1469,645 @@ function Mains({ isCategoryOpen, onClose }) {
                                     badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
                                 />
 
-                                <ProductMain
-                                    price="$124"
-                                    pricetachao="12"
-                                    desc="30%"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="fghgf"
-                                    title="kamisa"
-                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[3]"
-                                />
 
-                                <ProductMain
-                                    price="$124"
-                                    pricetachao="12"
-                                    desc="30%"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="fghgf"
-                                    title="kamisa"
-                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[3]"
-                                />
-
-                                <ProductMain
-                                    price="$124"
-                                    pricetachao="12"
-                                    desc="30%"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="fghgf"
-                                    title="kamisa"
-                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[3]"
-                                />
-
-                                <ProductMain
-                                    price="$124"
-                                    pricetachao="12"
-                                    desc="30%"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="fghgf"
-                                    title="kamisa"
-                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[3]"
-                                />
-
-                                <ProductMain
-                                    price="$124"
-                                    pricetachao="12"
-                                    desc="30%"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="fghgf"
-                                    title="kamisa"
-                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[3]"
-                                />
-
-                                <ProductMain
-                                    price="$124"
-                                    pricetachao="12"
-                                    desc="sale"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="fghgf"
-                                    title="kamisa"
-                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[3] top-[8px] left-[-29px] rotate-[-45deg] uppercase text-[11px] py-[5px] px-[40px]"
-                                />
-
-                                <ProductMain
-                                    price="124"
-                                    pricetachao="12"
-                                    desc="sale"
-                                    img1="pollo.png"
-                                    img2="sushi.png"
-                                    description="fghgf"
-                                    title="kamisa"
-                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[3] top-[8px] left-[-29px] rotate-[-45deg] uppercase text-[11px] py-[5px] px-[40px]"
-                                />
 
 
 
                             </div>
 
                         </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-main" ref={scrollToRef} className="mb-[30px]">
+
+                            <h2 class="title" className=" text-stone-900 text-[1rem] font-[600] tracking-[0.4px] capitalize pb-[10px] border-b border-slate-300 mb-[30px]">New Products</h2>
+
+                            <div class="product-grid" className=" grid grid-cols-2 gap-[25px] min-[480px]:grid-cols-2 min-[480px]:gap-[30px] min-[1024px]:grid-cols- min-[1200px]:grid-cols-4">
+
+
+                                {products.map(product => (
+                                    <ProductMain
+                                        key={product.title}
+                                        pricefake={product.pricefake}
+                                        price={product.price}
+                                        pricetachao={product.pricetachao}
+                                        desc={product.desc}
+                                        img1={product.img1}
+                                        img2={product.img2}
+                                        description={product.description}
+                                        title={product.title}
+                                        badgeColor={product.badgeColor}
+                                    />
+                                ))}
+
+
+
+                                <ProductMain
+                                    key="1/4 de pollo - 1"
+                                    pricefake="$16.500"
+                                    price={16500}
+                                    pricetachao={18000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="pollo mas bebida de 1/5L"
+                                    title="1/4 de pollo - 1"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+                                <ProductMain
+                                    key="papas fritas"
+                                    pricefake="$13.500"
+                                    price={13500}
+                                    pricetachao={15000}
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="papas fritas"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+                                <ProductMain
+                                    price="$124"
+                                    pricetachao="12"
+                                    desc="30%"
+                                    img1="pollo.png"
+                                    img2="sushi.png"
+                                    description="fghgf"
+                                    title="kamisa"
+                                    badgeColor="absolute top-[15px] left-[15px] bg-emerald-600 text-[0.813rem] font-[500] text-white py-[0] px-[8px] rounded-[5px] z-[1]"
+                                />
+
+
+
+
+
+                            </div>
+
+                        </div>
+
 
                     </div>
 
@@ -1399,5 +2117,7 @@ function Mains({ isCategoryOpen, onClose }) {
         </main>
     )
 }
-
+Mains.defaultProps = {
+    products: []
+};
 export default Mains;

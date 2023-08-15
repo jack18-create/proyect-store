@@ -8,7 +8,7 @@ import { CartContext } from "./CartContext";
 import LocationAutocomplete from './LocationAutocomplete';
 import { GoogleApiWrapper, Map, Marker, Circle } from 'google-maps-react';
 import Geocode from "react-geocode";
-import { FaMotorcycle, FaMoneyBillAlt } from "react-icons/fa";
+import { FaTruck, FaMoneyBillAlt } from "react-icons/fa";
 import { BiCurrentLocation } from "react-icons/bi";
 import { ImLocation } from "react-icons/im";
 import { BsFillCreditCardFill, BsPhoneFlip } from "react-icons/bs";
@@ -41,6 +41,9 @@ const Card = ({ isCardOpen, onClose, google }) => {
     const [showScheduleDiv, setShowScheduleDiv] = useState(false);
     const [clockClicked, setClockClicked] = useState(false);
     const [calendarClicked, setCalendarClicked] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [AddressCompleted, setAddressCompleted] = useState('');
+
     const [isUsingCurrentLocation, setIsUsingCurrentLocation] = useState(false);
 
     const [radius, setRadius] = useState(1000); // Initial radius value in meters
@@ -50,6 +53,8 @@ const Card = ({ isCardOpen, onClose, google }) => {
     const [selectedOption, setSelectedOption] = useState("selecciona el dia");
     const [showSecondOptions, setShowSecondOptions] = useState(true); // Nuevo estado para el segundo conjunto de opciones
     const [isLocationInputCompleted, setIsLocationInputCompleted] = useState(false);
+    const [showLocationInput, setShowLocationInput] = useState(true);
+    const [editableAddress, setEditableAddress] = useState('');
 
     const [isConfirmed, setIsConfirmed] = useState(false);
     const [isConfirmedRetiro, setIsConfirmedRetiro] = useState(false);
@@ -150,11 +155,16 @@ const Card = ({ isCardOpen, onClose, google }) => {
         // Resto del código para confirmar el pedido (opcional)
         // ...
 
+        if (showMap && editableAddress) {
+            setAddress(editableAddress); // Actualiza la dirección principal con el valor editable
+        }
+
         setDeliveryError(""); // Limpia el mensaje de error si todo está correcto
         setIsConfirmed(true); // Marcar como confirmado
         setSelectedDelivery('Delivery'); // Actualizar el estado de selectedDelivery a 'Delivery'
         setShowMap(false); // Cerrar el contenido
     };
+
 
 
 
@@ -228,25 +238,22 @@ const Card = ({ isCardOpen, onClose, google }) => {
         lng: -70.58251803640714,
     };
 
-
+    const [markerAddress, setMarkerAddress] = useState('');
 
     const [businessLocation, setBusinessLocation] = useState({
         lat: -33.55315558167302,
         lng: -70.58251803640714,
     });
-    const acceptableRadius = 5;
+    const acceptableRadius = 10;
 
     const [userLocation, setUserLocation] = useState(null);
 
+
+
     const [markerLocation, setMarkerLocation] = useState({
-        lat: businessLocation.lat,
-        lng: businessLocation.lng,
+        lat: userLocation?.latitude || 0, // Set a default value or 0 if userLocation or latitude is not available
+        lng: userLocation?.longitude || 0, // Set a default value or 0 if userLocation or longitude is not available
     });
-
-
-
-
-
 
     const handleMarkerDragend = (t, map, coord) => {
         if (coord?.latLng) {
@@ -260,12 +267,15 @@ const Card = ({ isCardOpen, onClose, google }) => {
                 geocoder.geocode({ location: { lat, lng } }, (results, status) => {
                     if (status === google.maps.GeocoderStatus.OK && results[0]) {
                         const address = results[0].formatted_address;
-                        setAddress(address);
+                        setAddress(address); // Actualiza el estado address con la nueva dirección
                         setUserLocation({
                             latitude: lat,
                             longitude: lng,
                             address: address,
                         });
+                        setMarkerAddress(address);
+                        setEditableAddress(address); // Actualiza el estado editableAddress con la nueva dirección
+                        setInputValue(address); // Update the inputValue with the new address
                     }
                 });
             }
@@ -283,11 +293,6 @@ const Card = ({ isCardOpen, onClose, google }) => {
 
 
 
-
-
-
-
-
     const handleCardClick = () => {
         onClose();
     };
@@ -296,7 +301,10 @@ const Card = ({ isCardOpen, onClose, google }) => {
     useEffect(() => {
         if (userLocation && userLocation.latitude && userLocation.longitude) {
             handleUserLocationChange(userLocation.latitude, userLocation.longitude);
-            setIsLocationInputCompleted(true);
+            setMarkerLocation({
+                lat: userLocation.latitude,
+                lng: userLocation.longitude,
+            });
         }
     }, [userLocation]);
 
@@ -319,30 +327,33 @@ const Card = ({ isCardOpen, onClose, google }) => {
     const [locationError, setLocationError] = useState(null);
 
 
-    const handleUseLocation = async () => {
+    const handleUseLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 async (position) => {
                     const { latitude, longitude } = position.coords;
                     try {
-                        // Aquí debes asegurarte de proporcionar la API key correcta para Geocode.fromLatLng
                         const response = await Geocode.fromLatLng(
                             latitude,
                             longitude,
-                            "AIzaSyBlM-pqiYVmNq_m6pJDVzY8vV0F_yftFfM" // Asegúrate de tener la API key correcta aquí
+                            "AIzaSyBlM-pqiYVmNq_m6pJDVzY8vV0F_yftFfM"
                         );
                         const address = response.results[0].formatted_address;
                         setAddress(address);
+
+                        setEditableAddress(address);
                         setUserLocation({
                             latitude: latitude,
                             longitude: longitude,
                             address: address,
                         });
+                        setMarkerLocation({ lat: latitude, lng: longitude });
+                        setInputValue(address); // Update the inputValue with the current address
+                        setAddressCompleted(true);
+                        handleUserLocationChange(latitude, longitude);
 
-                        setShowMap(true); // Muestra el mapa después de obtener la ubicación actual
-                        setIsUsingCurrentLocation(true);
-                        setIsLocationInputCompleted(true);
-
+                        // Oculta el input del LocationAutocomplete
+                        setShowLocationInput(false);
                     } catch (error) {
                         console.error("Geocoding error:", error);
                         setLocationError(
@@ -355,7 +366,6 @@ const Card = ({ isCardOpen, onClose, google }) => {
                     setLocationError(
                         "Error getting your current location. Please check your browser settings and try again."
                     );
-
                 }
             );
         } else {
@@ -363,31 +373,50 @@ const Card = ({ isCardOpen, onClose, google }) => {
         }
     };
 
+    const handleEditableAddressChange = (event) => {
+        const newValue = event.target.value;
+        setEditableAddress(newValue); // Actualiza el valor editable del input
+
+        // Call the Geocode service to get the coordinates from the new address
+        if (google && google.maps && google.maps.Geocoder) {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: newValue }, (results, status) => {
+                if (status === google.maps.GeocoderStatus.OK && results[0]) {
+                    const location = results[0].geometry.location;
+                    const lat = location.lat();
+                    const lng = location.lng();
+
+                    // Update the marker's location state with the new coordinates
+                    setMarkerLocation({ lat, lng });
+
+                    // Update the userLocation state with the new coordinates and address
+                    setUserLocation({
+                        latitude: lat,
+                        longitude: lng,
+                        address: newValue,
+                    });
+                }
+            });
+        }
+    };
+
+
+
 
 
 
     const handleUserLocationChange = (lat, lon) => {
-        // Calculate the distance and delivery cost based on the selected coordinates
+        // Calculate the distance based on the selected coordinates
         const distance = calculateDistance(lat, lon, businessLocation.lat, businessLocation.lng); // Use the businessLocation coordinates for reference
+
+        // Calculate and set the delivery cost separately
         const cost = calculateDeliveryCost(distance);
         setDeliveryCost(cost);
 
-
-        const distanceToSantiago = calculateDistance(lat, lon, sushiChileLocation.lat, sushiChileLocation.lng);
-
-        // Check if the selected location is within the acceptable radius of Santiago de Chile
-        if (distanceToSantiago <= acceptableRadius) {
-            // If the location is within the acceptable radius, update the state with the new user location
-
-            setLocationError(""); // Clear any previous location error
-            setIsLocationInputCompleted(true);
-        } else {
-            // If the location is outside the acceptable radius, show "Ubicación no disponible"
-            setLocationError("lo sentimos mucho su Ubicacion esta fuera de nuestro servicio de Delivery.");
-            setDeliveryCost(0);
-            setUserLocation(null); // Clear the userLocation state
-        }
+        // Set isLocationInputCompleted to true
+        setIsLocationInputCompleted(true);
     };
+
 
 
 
@@ -433,11 +462,13 @@ const Card = ({ isCardOpen, onClose, google }) => {
                                     {cartItems.slice(0, 1000).map((item, index) => (
                                         <div key={index} className="my-2 relative flex items-center snap-center justify-end bg-slate-200 h-[90px] w-full rounded-[10px] mb-[15px] gap-3 pr-[15px]">
                                             <img className="rounded-[10px] absolute left-1" src={item.img1} alt="qew" width={80} height={80} />
-                                            <div className="absolute left-[90px] top-[5px]">
-                                                <p className="uppercase">{item.title}</p>
-                                                <p className="bg-gray-200 border text-emerald-500 w-[70%] border-gray-300 rounded-[10px] mt-[30px]">
-                                                    {(item.price * item.quantity).toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
-                                                </p>
+                                            <div className="absolute left-[90px] w-[150px] top-[5px] ">
+                                                <p className="uppercas overflow-hidden text-ellipsis whitespace-nowrap">{item.title}</p>
+                                                <span>
+                                                    <p className="bg-gray-200 border text-emerald-500 pr-2 border-gray-300 rounded-[10px] mt-[30px]">
+                                                        {(item.price * item.quantity).toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
+                                                    </p>
+                                                </span>
 
                                             </div>
 
@@ -535,9 +566,9 @@ const Card = ({ isCardOpen, onClose, google }) => {
                                         >
                                             <span className="flex gap-2 items-center whitespace-nowrap ">
                                                 <span className="text-4xl">
-                                                    <FaMotorcycle className="text-blue-900/80" />
+                                                    <FaTruck className="text-blue-900/80" />
                                                 </span>
-                                                <span>Delivery</span>
+                                                <span>Entrega</span>
                                             </span>
                                         </button>
                                         <button
@@ -586,24 +617,25 @@ const Card = ({ isCardOpen, onClose, google }) => {
                                                                     <span>Ingresa una nueva dirección</span>
                                                                 </div>
                                                             </label>
-                                                            <LocationAutocomplete
-                                                                google={google}
-                                                                userLocation={userLocation}
-                                                                setUserLocation={setUserLocation}
-                                                                handleUseLocation={handleUseLocation}
-                                                                onLocationChange={handleUserLocationChange}
-                                                                disabled={isUsingCurrentLocation}
-                                                                deliveryLatitude={businessLocation.lat} // Se pasa la coordenada de latitud del negocio al componente LocationAutocomplete
-                                                                deliveryLongitude={businessLocation.lng}
+                                                            {showLocationInput && (
 
-
-                                                            // Se pasa la coordenada de longitud del negocio al componente LocationAutocomplete
-                                                            />
+                                                                <LocationAutocomplete
+                                                                    google={google}
+                                                                    userLocation={userLocation}
+                                                                    setUserLocation={setUserLocation}
+                                                                    onLocationChange={handleUserLocationChange}
+                                                                    businessLocation={businessLocation}
+                                                                    acceptableRadius={acceptableRadius}
+                                                                    markerAddress={address} // Pasar la dirección actual como prop
+                                                                    setMarkerLocation={setMarkerLocation} // Pasar la función setMarkerLocation como prop
+                                                                    inputValue={address}
+                                                                />
+                                                            )}
                                                             <div className="relative mt-[6px] mb-[20px] ml-[0px]" data-testid="search-address-results">
                                                                 <button
                                                                     type="button"
                                                                     className="focus:text-blue-500"
-                                                                    onClick={handleUseLocation.bind(this)} // Bind the handleUseLocation function to the correct context
+                                                                    onClick={() => handleUseLocation(setMarkerLocation)}
                                                                 >
                                                                     <span className="flex justify-center items-center gap-[5px]">
                                                                         <span className="text-[20px] text-blue-600">
@@ -617,11 +649,10 @@ const Card = ({ isCardOpen, onClose, google }) => {
                                                                     <div>
                                                                         <input
                                                                             type="text"
-                                                                            class="py-3 px-3 placeholder-gray-400 text-black dark:bg-gray-700 dark:text-white dark:border-gray-600 block w-full flex-1 rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                                                                            value={address}
-                                                                            onMarkerDragEnd={handleMarkerDragend}
-                                                                            readOnly
-                                                                        ></input>
+                                                                            className="py-3 px-3 placeholder-gray-400 text-black dark:bg-gray-700 dark:text-white dark:border-gray-600 block w-full flex-1 rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                                                            value={editableAddress} // Usa editableAddress en lugar de address
+                                                                            onChange={handleEditableAddressChange} // Maneja los cambios en editableAddress
+                                                                        />
                                                                     </div>
                                                                 )}
                                                                 {locationError && (
@@ -643,7 +674,7 @@ const Card = ({ isCardOpen, onClose, google }) => {
                                                                             center={{ lat: userLocation.latitude, lng: userLocation.longitude }}
                                                                         >
 
-                                                                            <Marker position={{ lat: markerLocation.lat, lng: markerLocation.lng }} draggable={true} onDragend={handleMarkerDragend} />
+                                                                            <Marker position={markerLocation} draggable={true} onDragend={handleMarkerDragend} />
 
                                                                             <Circle
                                                                                 center={{ lat: markerLocation.lat, lng: markerLocation.lng }}

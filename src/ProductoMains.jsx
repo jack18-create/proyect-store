@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LiaHeart } from "react-icons/lia";
-import { BsEye, BsBagPlus, BsStarFill, BsStarHalf } from "react-icons/bs";
+import { BsEye, BsCartPlus, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { IoRepeatOutline } from "react-icons/io5";
 import DetailsProduct from "./DetailsProduct";
 import styled from 'styled-components';
@@ -42,12 +42,13 @@ const ProductoMain = (props) => {
         setIsDetailsOpen(false);
     };
 
+    
+
     return (
         <ShowcaseWrapper className="showcase">
             <div className="showcase-banner relative">
                 <img
                     src={img1}
-                    alt="Mens Winter Leathers Jackets"
                     width="300"
                     className="product-img default w-full h-full object-cover duration-500 ease-ease relative z-[1] hover:opacity-0"
                 />
@@ -77,37 +78,30 @@ const ProductoMain = (props) => {
                         className="btn-action bg-white text-zinc-500 mb-[5px] border border-zinc-300 p-[5px] rounded-[5px] ease-[0.2s] hover:bg-stone-900 hover:text-white hover:border-neutral-900"
                         onClick={handleDetailsOpen}
                     >
-                        <BsBagPlus />
+                        <BsCartPlus />
                     </button>
                 </Iconos>
             </div>
 
-            <div className="showcase-content py-[15px] px-[20px] pt-[0]">
-                <a href="#" className="showcase-category text-pink-600 text-[0.75rem] font-[500] uppercase mb-[10px]">
+            <div className="showcase-content relative py-[10px] px-[10px] pt-[0]" onClick={handleDetailsOpen}>
+                <p href="#" className="showcase-category text-pink-600 text-[0.75rem] font-[500] uppercase mb-[10px]">
                     {title}
-                </a>
+                </p>
 
-                <a href="#">
-                    <h3 className="showcase-title text-zinc-500 text-[0.813rem] font-[300] capitalize tracking-[1px] mb-[10px] duration-200 hover:text-neutral-900">
+                <p href="#">
+                    <h3 className="showcase-title truncate  text-left text-zinc-500 text-[0.813rem] font-[300] capitalize tracking-[1px] mb-[10px] duration-200 hover:text-neutral-900">
                         {description}
                     </h3>
-                </a>
+                </p>
 
-                <div className="showcase-rating relative flex text-orange-500 mb-[10px]">
+                <div className=" relative flex text-orange-500 mb-[10px]">
                     <BsStarFill />
                     <BsStarFill />
                     <BsStarFill />
                     <BsStarHalf />
                     <BsStarHalf />
 
-                    <button
-                        className="absolute  object-cover bg-green-600 w-[50%] h-8 right-[40px] shadow-custom rounded-[10px] min-[480px]:right-[-14px] min-[480px]:h-7 min-[570px]:right-[-7px]"
-                        onClick={handleDetailsOpen}
-                    >
-                        <p href="#" className="text-white min-[480px]:text-[15px]">
-                            agregar
-                        </p>
-                    </button>
+
                 </div>
 
                 <div className="price-box flex gap-[10px] text-[0.875rem] text-neutral-900 mb-[10px]">
@@ -115,6 +109,7 @@ const ProductoMain = (props) => {
                     <del className="text-zinc-500">{pricetachao}</del>
                     <p className="price hidden font-[700]">{price}</p>
                 </div>
+
             </div>
 
             {isDetailsOpen && (
